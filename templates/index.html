@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Tony's Mission to Mars Page -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Latest Mars Information</a></p>
+    </div>
+
+    <!-- Mars News Articles -->
+    <div class="row" id="mars-news">
+      <div class="col-md-8">
+        <h4 class="heading">Latest Mars News</h4>
+        <p>
+          <medium>{{mars_data.news_title}}</medium>
+        </p>
+        <p>
+          <small>{{mars_data.news_para}}</small>
+        </p>
+      </div>
+    </div>
+    <!-- Featured Mars Image -->
+    <div class="row" id="mars-image">
+      <div class="col-md-8">
+        <h4 class="heading">Featured Mars Image</h4>
+        <p>
+          <medium>{{mars_data.featured_title}}</medium>
+        </p>
+        <img src={{mars_data.featured_image}} height="400">
+      </div>
+    </div>
+    <!-- Mars Weather -->
+    <div class="row" id="mars-weather">
+      <div class="col-md-4">
+        <h4 class="heading">Current Weather on Mars</h4>
+        <small>{{mars_data.weather}}</small>
+      </div>
+    </div>
+    <!-- Mars Facts -->
+    <table class="table" id="mars-facts" border=1>
+      <h4 class="heading">Mars Facts</h4>
+        <tr>
+          <th>Equatorial Diameter:</th>
+          <td>{{mars_data['facts']['Value']['Equatorial Diameter:']}}</td>
+        </tr>
+        <tr>
+          <th>Polar Diameter:</th>
+          <td>{{mars_data['facts']['Value']['Polar Diameter:']}}</td>
+        </tr>
+        <tr>
+            <th>Equatorial Diameter:</th>
+            <td>{{mars_data['facts']['Value']['Equatorial Diameter:']}}</td>
+          </tr>
+          <tr>
+              <th>Mass:</th>
+              <td>{{mars_data['facts']['Value']['Mass:']}}</td>
+            </tr>
+            <tr>
+                <th>Moons:</th>
+                <td>{{mars_data['facts']['Value']['Moons:']}}</td>
+              </tr>
+              <tr>
+                  <th>Orbit Distance:</th>
+                  <td>{{mars_data['facts']['Value']['Orbit Distance:']}}</td>
+                </tr>
+                <tr>
+                    <th>Orbit Period:</th>
+                    <td>{{mars_data['facts']['Value']['Orbit Period:']}}</td>
+                  </tr>
+                  <tr>
+                      <th>Surface Temperature:</th>
+                      <td>{{mars_data['facts']['Value']['Surface Temperature:']}}</td>
+                    </tr>
+                    <tr>
+                        <th>First Record:</th>
+                        <td>{{mars_data['facts']['Value']['First Record:']}}</td>
+                      </tr>
+                      <tr>
+                          <th>Recorded By:</th>
+                          <td>{{mars_data['facts']['Value']['Recorded By:']}}</td>
+                        </tr>
+    </table>
+    <!-- Mars Hemispheres -->
+    <div class="row" id="mars-hemi">
+      <div class="col-md-12">
+        <h4 class="heading">Mars Hemispheres</h4>
+      </div>
+      <div class="col-md-6">
+        <medium>{{mars_data['hemi'][0]['title']}}</medium>
+        <img src={{mars_data['hemi'][0]['img_url']}} width="580">
+      </div>
+      <div class="col-md-6">
+        <medium>{{mars_data['hemi'][1]['title']}}</medium>
+        <img src={{mars_data['hemi'][1]['img_url']}} width="580">
+      </div>
+      <div class="col-md-6">
+        <medium>{{mars_data['hemi'][2]['title']}}</medium>
+        <img src={{mars_data['hemi'][2]['img_url']}} width="580">
+      </div>
+      <div class="col-md-6">
+        <medium>{{mars_data['hemi'][3]['title']}}</medium>
+        <img src={{mars_data['hemi'][3]['img_url']}} width="580">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
