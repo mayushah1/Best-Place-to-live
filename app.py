@@ -1,6 +1,11 @@
-from flask import Flask, render_template, jsonify, redirect
+from flask import (
+    Flask, render_template, jsonify, redirect
+    )
 from flask_pymongo import PyMongo
-import scrape_mars
+# from flask_sqlalchemy import SQLAlchemy
+# if using SQLAlchemy see 512 Visualizations Part 3, activity 3
+
+# import scrape_mars
 
 app = Flask(__name__)
 
