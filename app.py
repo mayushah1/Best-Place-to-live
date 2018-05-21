@@ -37,10 +37,17 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/names')
-def names():
+@app.route('/cities')
+def cities():
     """Return a list of cities."""
     results = session.query(School_Data.city).distinct()
+    return jsonify(list(results))
+
+@app.route('/schools/<city>')
+def schools():
+    """Return a list of schools of the selected city."""
+    results = session.query(School_Data.school_name).\
+        filter(School_Data.city == city).all()
     return jsonify(list(results))
 
 
@@ -105,7 +112,7 @@ def samples(sample):
     df = df[df[sample] > 1]
 
     # Sort the results by sample in descending order
-    df = df.sort_values(by=sample, ascending=0)
+    df = df.sort_values(by=sample, ascending=0)          
 
     # Format the data to send as json
     data = [{
