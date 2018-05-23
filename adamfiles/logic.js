@@ -9,7 +9,7 @@ d3.csv(schoolsurl, function(error, schooldata) {
   schooldata.forEach(function(d) {
     d.lon = +d.lon;
     d.lat = +d.lat;
-    d["city_type"] = +d["city_type"];
+    // d.city[0] = +d.city[0];
     d["city"] = d["city"];
     d.enrollment = +d.enrollment;
     d.parentrating = +d.parentrating;
