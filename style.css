@@ -22,3 +22,12 @@
 a {
     color: #50021B;
 }
+
+.mr-3 {
+    width: 205px;
+    height: auto;
+}
+
+#dropdownMenuButton {
+    background-color: #50021B;
+}
