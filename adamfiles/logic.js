@@ -1,7 +1,7 @@
 // Set variable array
 schooldata = [];
 
-var schoolsurl = "https://raw.githubusercontent.com/mayushah1/Best-Place-to-live/master/school_data.csv"
+var schoolsurl = "https://raw.githubusercontent.com/mayushah1/Best-Place-to-live/adam_branch/adamfiles/city_school.csv"
 
 d3.csv(schoolsurl, function(error, schooldata) {
   
@@ -61,4 +61,4 @@ var myMap = L.map("map", {
 // Pass our map layers into our layer control
 // Add the layer control to the map
 L.control.layers(baseMaps, overlayMaps).addTo(myMap);
-
+})
