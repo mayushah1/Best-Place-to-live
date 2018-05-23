@@ -5,13 +5,13 @@
 }
 
 #stateFlag {
-    width: 450px;
+    width: 75px;
     height: auto;
 }
 
 #housingCarousel img {
-    width: auto;
-    height: 400;
+    width: 800px;
+    height: 600px;
     max-height: 600px;
 }
 
@@ -30,4 +30,12 @@ a {
 
 #dropdownMenuButton {
     background-color: #50021B;
+}
+
+h1 {
+    color: white;
+}
+
+body {
+    padding-top: 115px;
 }
