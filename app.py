@@ -7,8 +7,10 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 app = Flask(__name__)
+
+
 
 
 #################################################
@@ -31,6 +33,11 @@ School_Data = Base.classes.school_data
 session = Session(engine)
 
 
+# results = session.query(School_Data.school_name).\
+#     filter(School_Data.city == "Adelanto").all()
+# print('results: ', results)
+
+
 @app.route("/")
 def index():
     """Return the homepage."""
@@ -43,11 +50,13 @@ def cities():
     results = session.query(School_Data.city).distinct()
     return jsonify(list(results))
 
-@app.route('/schools/<city>')
-def schools():
+@app.route('/schools/<cityselectvalue>')
+def schools(cityselectvalue):
     """Return a list of schools of the selected city."""
+    print(cityselectvalue)
     results = session.query(School_Data.school_name).\
-        filter(School_Data.city == city).all()
+        filter(School_Data.city == cityselectvalue).all()
+    print('results: ', results)
     return jsonify(list(results))
 
 

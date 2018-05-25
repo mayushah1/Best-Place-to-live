@@ -21,7 +21,7 @@
             <div class="col-md-2">
                 <div class="well">
                     <h5>SELECT City:</h5>
-                    <select id="selCity" onchange="cityChanged(this.value)"></select>
+                    <select id="selCity" name="city" onchange="getSchoolOptions(this.value)"</select>
                 </div>
                 <div class="well">
                   <h5>SELECT School:</h5>
@@ -49,6 +49,8 @@
     </div>
 
     <script>
+        var city = "Adelanto";
+        document.getElementById("selCity").value = "Adelanto";
 
         function updateMetaData(data) {
 
@@ -166,33 +168,41 @@
             buildGauge(sample);
         }
 
-        function getOptions() {
+        function getCityOptions() {
 
             // Grab a reference to the dropdown select element
             var cityselect = document.getElementById('selCity');
-            var selector = document.getElementById('selDataset');
+            // var cityselectvalue = cityselect.value;
+            // var selector = document.getElementById('selDataset');
             console.log("cityselect: " + cityselect);
             // Populate the list of cities in the drop down
-            Plotly.d3.json('/cities', function(error, listCities) {
-                for (var i = 0; i < listCities.length;  i++) {
-                    var currentOption = document.createElement('option');
-                    currentOption.text = listCities[i];
-                    currentOption.value = listCities[i]
-                    cityselect.appendChild(currentOption);
-                }
-            })
-            
-            // Use the list of sample names to populate the select options
-            Plotly.d3.json(`/schools/${cityselect.value}`, function(error, listSchools) {
-                for (var i = 0; i < listSchools.length;  i++) {
-                    var currentOption = document.createElement('option');
-                    currentOption.text = listSchools[i];
-                    currentOption.value = listSchools[i]
-                    selector.appendChild(currentOption);
-                }
+            // Plotly.d3.json('/cities', function(error, listCities) {
+            //     for (var i = 0; i < listCities.length;  i++) {
+            //         var currentOption = document.createElement('option');
+            //         currentOption.text = listCities[i];
+            //         currentOption.value = listCities[i]
+            //         cityselect.appendChild(currentOption);
+            //     }
+            // })
+            // return(cityselectvalue);
+        }
 
-                getData(listSchools[0], buildCharts);
-            })
+//        function getSelectedCity
+        function getSchoolOptions(cityselectvalue) {
+            console.log("city selection: " + cityselectvalue)
+            // Use the list of sample names to populate the select options
+            // Plotly.d3.json(`/schools/${cityselectvalue}`, function(error, listSchools) {
+            //     console.log("listSchools: " + listSchools)
+            //     // for (var i = 0; i < listSchools.length;  i++) {
+            //     //     var currentOption = document.createElement('option');
+            //     //     currentOption.text = listSchools[i];
+            //     //     currentOption.value = listSchools[i]
+            //     //     selector.appendChild(currentOption);
+            //     // }
+                
+            //     // console.log("build charts")
+            //     // getData(listSchools[0], buildCharts);
+            // })
         }
 
         function cityChanged(newCity) {
@@ -209,7 +219,13 @@
         }
 
         function init() {
-            getOptions();
+            var something = getCityOptions();
+            console.log("init GCO: " + something)
+            // var cityselectvalue = cityselect.value;
+            // document.getElementById("selCity").value = "Adelanto";
+            console.log("init 2: " + document.getElementById("selCity").value)
+            var city = document.getElementById("selCity").value
+            getSchoolOptions(city);
         }
 
         // Initialize the dashboard
