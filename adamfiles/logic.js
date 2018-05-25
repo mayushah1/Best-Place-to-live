@@ -30,7 +30,7 @@ for (var i = 0; i < schooldata.length; i++) {
   schoolMarkers.push(
     L.marker([schooldata[i].lat,schooldata[i].lon]).bindPopup("<h2>" 
     + "City: " + schooldata[i].city + "<br>" 
-    + "Average School Size: " + Math.round(schooldata[i].enrollment,2).toFixed(1) + "<br>" 
+    + "Average School Size: " + Math.round(schooldata[i].enrollment) + "<br>" 
     + "Average Parent Rating: " + (Math.round(schooldata[i].parentrating * 100)/100).toFixed(2) + "<br>"
     +"Average Golden State Rating: " + (Math.round(schooldata[i].gsrating * 100)/100).toFixed(2)
     + "</h2>")
