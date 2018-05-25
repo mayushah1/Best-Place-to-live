@@ -9,7 +9,7 @@
 
     <!-- Import Bootstrap -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4' crossorigin='anonymous'>
-    <link rel='stylesheet' href='style.css'>
+    <link rel='stylesheet' href='../css/style.css'>
 
     <!-- Import Plotly -->
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
@@ -49,7 +49,7 @@
     <!-- Body Section -->
     <div class='container-fluid' id='heading'>
         <div class='row'>
-            <div class='col-6'>
+            <div class='col-8'>
                 <h3 class='display-3'>California Fun Facts</h3>
                 <p>When you're moving, it's important to know what you're getting in to. But before you actually live in a neighborhood, it can be hard to get a feeling for the kind of community you're choosing. So we've put together some data for you to play around with to learn more about where you're going to move!</p>
             </div>
@@ -59,12 +59,20 @@
         <div class='row'>
             <div class='col'>
                 <h4 class='display-4'>Public vs Private Schools</h4>
+                <p>This chart displays the percentage of children (3 years old-high school) enrolled in public or private school in each school district in California. </p>
+                <p>When interpreting this chart, please keep in mind that the percentages should be interpreted in context with the total number of students in each district. To help with this, we've included the total number of students for each school district, broken up by public/private, as well as a separate chart below showing the total enrollment.</p>
                 <div id='plotPerPrivPub'></div>
             </div>
         </div>
         <div class='row'>
             <div class='col'>
                 <div id='totalEnrolled'></div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <h4 class='display-4'>Median Income by Education Level</h4>
+                <div id='incomeByEdu'></div>
             </div>
         </div>
         <div class='row'>
@@ -78,10 +86,11 @@
     <!--End of Body - Run all scripts here-->
 
     <!--Run scripts that hold our data-->
-    <script src='data/perPrivPub.js'></script>
+    <script src='../js/perPrivPub.js'></script>
+    <script src='../js/schoolDistrictByEducationLevelAndMedianIncome.js'></script>
 
     <!-- Run Plotly plot script and set up data selector-->
-    <script src='plots.js'></script>
+    <script src='../js/plots.js'></script>
 
     <!-- Import stuff that Bootstrap needs-->
     <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
