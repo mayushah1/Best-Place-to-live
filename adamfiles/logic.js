@@ -14,6 +14,7 @@ d3.csv(schoolsurl, function(error, schooldata) {
     d["city"] = d["city"];
     d.enrollment = +d.enrollment;
     d.parentrating = +d.parentrating;
+    d.gsrating = +d.gsrating;
   });
 };
 
@@ -30,7 +31,8 @@ for (var i = 0; i < schooldata.length; i++) {
     L.marker([schooldata[i].lat,schooldata[i].lon]).bindPopup("<h2>" 
     + "City: " + schooldata[i].city + "<br>" 
     + "Average School Size: " + Math.round(schooldata[i].enrollment,2).toFixed(1) + "<br>" 
-    + "Average Parent Rating: " + Math.round(schooldata[i].parentrating,2).toFixed(1) 
+    + "Average Parent Rating: " + (Math.round(schooldata[i].parentrating * 100)/100).toFixed(2) + "<br>"
+    +"Average Golden State Rating: " + (Math.round(schooldata[i].gsrating * 100)/100).toFixed(2)
     + "</h2>")
   );
 }
