@@ -1,7 +1,6 @@
     /*--------------------------------------------------------------------------
-                                                                                                                                 +++ Create public vs private school graph
-                                                                                                                            -------------------------------------------------------------------------*/
-
+                                                                                                                                                        Public vs private school
+                                                                                                                                                        */
     var xBar = [];
     perPrivPub.forEach(function (data) {
         xBar.push(data.schoolDistrict);
@@ -109,37 +108,41 @@
          +++ Create median income by school district and education level
     -------------------------------------------------------------------------*/
 
+    // parse data from all data sets 
+
+    // parse consolidated date
     var xBar2 = [];
-    medianIncomeBySchoolDistrictAndEducation.forEach(function (date) {
-        xBar2.push(date["School District"]);
+    medianIncomeBySchoolDistrictAndEducation.forEach(function (data) {
+        xBar2.push(data["School District"]);
     });
 
     var lessThanHS = [];
-    medianIncomeBySchoolDistrictAndEducation.forEach(function (date) {
-        lessThanHS.push(date["Less than high school graduate"]);
+    medianIncomeBySchoolDistrictAndEducation.forEach(function (data) {
+        lessThanHS.push(data["Less than high school graduate"]);
     });
 
     var highSchool = [];
-    medianIncomeBySchoolDistrictAndEducation.forEach(function (date) {
-        highSchool.push(date["High school graduate (includes equivalency)"]);
+    medianIncomeBySchoolDistrictAndEducation.forEach(function (data) {
+        highSchool.push(data["High school graduate (includes equivalency)"]);
     });
 
     var someCollege = [];
-    medianIncomeBySchoolDistrictAndEducation.forEach(function (date) {
-        someCollege.push(date["Some college or associate's degree"]);
+    medianIncomeBySchoolDistrictAndEducation.forEach(function (data) {
+        someCollege.push(data["Some college or associate's degree"]);
     });
 
     var bachelors = [];
-    medianIncomeBySchoolDistrictAndEducation.forEach(function (date) {
-        bachelors.push(date["Bachelor's degree"]);
+    medianIncomeBySchoolDistrictAndEducation.forEach(function (data) {
+        bachelors.push(data["Bachelor's degree"]);
     });
 
     var graduateDegree = [];
-    medianIncomeBySchoolDistrictAndEducation.forEach(function (date) {
-        graduateDegree.push(date["Graduate or professional degree"]);
+    medianIncomeBySchoolDistrictAndEducation.forEach(function (data) {
+        graduateDegree.push(data["Graduate or professional degree"]);
     });
 
-
+    // create traces with all created arrays
+    // consolidated data
     var dataLessThan = {
         x: xBar2,
         y: lessThanHS,
@@ -195,6 +198,183 @@
         }
     };
 
+    // women data
+
+    // parse female income
+    var xBar3 = [];
+    womenIncome.forEach(function (data) {
+        xBar3.push(data["School District"]);
+    });
+
+    var womenLessThanHS = [];
+    womenIncome.forEach(function (data) {
+        womenLessThanHS.push(data["Less than high school graduate"]);
+    });
+
+    var womenHS = [];
+    womenIncome.forEach(function (data) {
+        womenHS.push(data["High school graduate (includes equivalency)"]);
+    });
+
+    var womenSomeCollege = [];
+    womenIncome.forEach(function (data) {
+        womenSomeCollege.push(data["Some college or associate's degree"]);
+    });
+
+    var womenBachelors = [];
+    womenIncome.forEach(function (data) {
+        womenBachelors.push(data["Bachelor's degree"]);
+    });
+
+    var womenGraduateDegree = [];
+    womenIncome.forEach(function (data) {
+        womenGraduateDegree.push(data["Graduate or professional degree"]);
+    });
+    var womenLessThanHSTrace = {
+        x: xBar3,
+        y: womenLessThanHS,
+        type: 'bar',
+        name: 'Less than High School',
+        marker: {
+            color: 'rgb(31, 72, 100)',
+            opacity: 0.75
+        }
+    };
+
+    var womenHighSchoolTrace = {
+        x: xBar3,
+        y: womenHS,
+        name: 'High School (or Equivalency)',
+        type: 'bar',
+        marker: {
+            color: 'rgb(215, 226, 233)',
+            opacity: 0.75
+        }
+    };
+
+    var womenSomeCollegeTrace = {
+        x: xBar3,
+        y: womenSomeCollege,
+        name: 'Some College (or Associate\'s)',
+        type: 'bar',
+        marker: {
+            color: 'rgb(255, 203, 53)',
+            opacity: 0.75
+        }
+    };
+
+    var womenBachelorsTrace = {
+        x: xBar3,
+        y: womenBachelors,
+        name: 'Bachelor\'s Degree',
+        type: 'bar',
+        marker: {
+            color: 'rgb(233, 92, 64)',
+            opacity: 0.75
+        }
+    };
+
+    var womenGraduateTrace = {
+        x: xBar3,
+        y: womenGraduateDegree,
+        name: 'Graduate Degree',
+        type: 'bar',
+        marker: {
+            color: 'rgb(80, 2, 27)',
+            opacity: 0.75
+        }
+    };
+
+
+    // men data
+
+    // parse male income
+    var xBar4 = [];
+    maleIncome.forEach(function (data) {
+        xBar4.push(data["School District"]);
+    });
+
+    var menLessThanHS = [];
+    maleIncome.forEach(function (data) {
+        menLessThanHS.push(data["Less than high school graduate"]);
+    });
+
+    var menHS = [];
+    maleIncome.forEach(function (data) {
+        menHS.push(data["High school graduate (includes equivalency)"]);
+    });
+
+    var menSomeCollege = [];
+    maleIncome.forEach(function (data) {
+        menSomeCollege.push(data["Some college or associate's degree"]);
+    });
+
+    var menBachelors = [];
+    maleIncome.forEach(function (data) {
+        menBachelors.push(data["Bachelor's degree"]);
+    });
+
+    var menGraduateDegree = [];
+    maleIncome.forEach(function (data) {
+        menGraduateDegree.push(data["Graduate or professional degree"]);
+    });
+
+    var menLessThanHSTrace = {
+        x: xBar4,
+        y: menLessThanHS,
+        type: 'bar',
+        name: 'Less than High School',
+        marker: {
+            color: 'rgb(31, 72, 100)',
+            opacity: 0.75
+        }
+    };
+
+    var menHSTrace = {
+        x: xBar4,
+        y: menHS,
+        name: 'High School (or Equivalency)',
+        type: 'bar',
+        marker: {
+            color: 'rgb(215, 226, 233)',
+            opacity: 0.75
+        }
+    };
+
+    var menSomeCollegeTrace = {
+        x: xBar4,
+        y: menSomeCollege,
+        name: 'Some College (or Associate\'s)',
+        type: 'bar',
+        marker: {
+            color: 'rgb(255, 203, 53)',
+            opacity: 0.75
+        }
+    };
+
+    var menBachelorsTrace = {
+        x: xBar4,
+        y: menBachelors,
+        name: 'Bachelor\'s Degree',
+        type: 'bar',
+        marker: {
+            color: 'rgb(233, 92, 64)',
+            opacity: 0.75
+        }
+    };
+
+    var menGraduateTrace = {
+        x: xBar4,
+        y: menGraduateDegree,
+        name: 'Graduate Degree',
+        type: 'bar',
+        marker: {
+            color: 'rgb(80, 2, 27)',
+            opacity: 0.75
+        }
+    };
+
+    // create layout
     var layout3 = {
         title: 'Median Income by Education Level & School District',
         xaxis: {
@@ -209,8 +389,33 @@
         barmode: 'stack'
     };
 
-    var data3 = [dataLessThan, dataHighSchool, dataSomeCollege, dataBachelors, dataGraduate];
-    console.log(data3);
 
-    //plot shit
-    Plotly.newPlot('incomeByEdu', data3, layout3);
+    // set up arrays with all necessary data
+    var consolidatedData = [dataLessThan, dataHighSchool, dataSomeCollege, dataBachelors, dataGraduate];
+    var womenData = [womenLessThanHSTrace, womenHighSchoolTrace, womenSomeCollegeTrace, womenBachelorsTrace, womenGraduateTrace];
+    var menData = [menLessThanHSTrace, menHSTrace, menSomeCollegeTrace, menBachelorsTrace, menGraduateTrace];
+
+    //plot shit and set up switching functionality
+    Plotly.plot('incomeByEdu', consolidatedData, layout3);
+
+
+    function updatePlotly(newdata) {
+        Plotly.purge("incomeByEdu");
+        Plotly.plot("incomeByEdu", newdata, layout3);
+    };
+
+    function getData(dataset) {
+        var data;
+        switch (dataset) {
+            case "men":
+                data = menData;
+                break;
+            case "women":
+                data = womenData;
+                break;
+            case "all":
+                data = consolidatedData;
+                break;
+        }
+        updatePlotly(data);
+    };
