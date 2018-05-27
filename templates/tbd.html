@@ -72,6 +72,11 @@
         <div class='row'>
             <div class='col'>
                 <h4 class='display-4'>Median Income by Education Level</h4>
+                <select id="selDataset" onchange="getData(this.value)">
+                    <option value="all">All</option>
+                    <option value="women">Women</option>
+                    <option value="men">Men</option>
+                </select>
                 <div id='incomeByEdu'></div>
             </div>
         </div>
@@ -88,6 +93,8 @@
     <!--Run scripts that hold our data-->
     <script src='../js/perPrivPub.js'></script>
     <script src='../js/schoolDistrictByEducationLevelAndMedianIncome.js'></script>
+    <script src='../js/womenIncome.js'></script>
+    <script src='../js/menIncome.js'></script>
 
     <!-- Run Plotly plot script and set up data selector-->
     <script src='../js/plots.js'></script>
