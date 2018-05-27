@@ -58,20 +58,9 @@
     <div class='container-fluid' id='plotAndExplanation'>
         <div class='row'>
             <div class='col'>
-                <h4 class='display-4'>Public vs Private Schools</h4>
-                <p>This chart displays the percentage of children (3 years old-high school) enrolled in public or private school in each school district in California. </p>
-                <p>When interpreting this chart, please keep in mind that the percentages should be interpreted in context with the total number of students in each district. To help with this, we've included the total number of students for each school district, broken up by public/private, as well as a separate chart below showing the total enrollment.</p>
-                <div id='plotPerPrivPub'></div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col'>
-                <div id='totalEnrolled'></div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col'>
                 <h4 class='display-4'>Median Income by Education Level</h4>
+                <p>This chart displays the median income of people over 25 years old within each school district in California, broken down by level of education. You can also select "Men" or "Women" to view only those stats.</p>
+                <p><i>Important!</i> Keep in mind while viewing the chart that the <strong>Y-axis</strong> changes significantly depending on which dataset you're viewing.</p>
                 <select id="selDataset" onchange="getData(this.value)">
                     <option value="all">All</option>
                     <option value="women">Women</option>
@@ -85,6 +74,21 @@
                 Source: <a href='https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml'>American FactFinder (2016)</a>
             </div>
         </div>
+        <div class='row'>
+            <div class='col'>
+                <h4 class='display-4'>Public vs Private Schools</h4>
+                <p>This chart displays the percentage of children (3 years old-high school) enrolled in public or private school in each school district in California. </p>
+                <p>When interpreting this chart, please keep in mind that the percentages should be interpreted in context with the total number of students in each district. To help with this, we've included the total number of students for each school district, broken up by public/private, as well as a separate chart below showing the total enrollment.</p>
+                <div id='plotPerPrivPub'></div>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <div id='totalEnrolled'></div>
+                Source: <a href='https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml'>American FactFinder (2016)</a>
+            </div>
+        </div>
+
     </div>
 
 
