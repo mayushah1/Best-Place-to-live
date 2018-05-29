@@ -1,4 +1,4 @@
-,_id,city,enrollment,graderange,gsrating,lat,lon,parentrating,phone,school_name,school_type,website
+﻿idx,s_id,city,enrollment,graderange,gsrating,lat,lon,parentrating,phone,school_name,school_type,website
 0,5af7493818e4261b6296a900,Adelanto,469,K-6,1,34.576157,-117.40949,3,(760) 246-5892,Adelanto Elementary School,public,http://www.aesd.net/
 1,5af7493818e4261b6296a901,Adelanto,1750,9-12,NA,34.531548,-117.441284,3,(760) 246-3909,Adelanto High School,public,http://ahs.vvuhsd.org/
 2,5af7493818e4261b6296a902,Adelanto,NA,1-12,NA,34.519,-117.40623,3,(760) 530-1576,Carpe Diem Learning Academy,private,

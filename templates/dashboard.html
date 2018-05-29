@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>City Details</title>
+
+    <!-- Import Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Import Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css">    
+
+</head>
+<body>
+    <!-- Navbar Section -->
+    <div class="fixed-top">
+        <div class="container-fluid" id="navbar">
+            <div class="row">
+                <div class="col">
+                    <h1>Best Places to Live in California</h1>
+
+                    <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
+                        <a class="navbar-brand" href="#">Menu</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-item nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                                <a class="nav-item nav-link " href="/about">About Us</a>
+                                <a class="nav-item nav-link" href="/tbd">Useful Facts</a>
+                                <a class="nav-item nav-link" href="/map">Mapping California</a>
+                                <a class="nav-item nav-link active" href="/dashboard">City Dashboard</a>
+                                <a class="nav-item nav-link" href="/table">Playing with Tables</a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class='container-fluid' id='heading'>
+            <div class='row'>
+                <div class='col-8'>
+                    <h3 class='display-3'>California City Facts</h3>
+                    <p>When you're moving, it's important to know what you're getting in to. But before you actually live in a neighborhood, it can be hard to get a feeling for the kind of community you're choosing. So we've put together some data for you to play around with to learn more about where you're going to move!</p>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-md-2">
+                <div class="well">
+                    <h5>SELECT City:</h5>
+                    <select id="selCity" onchange="cityChanged(this.value)"></select>
+                </div>
+                <div class="well">
+                  <h5>SELECT School:</h5>
+                  <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">City MetaData</h3>
+                    </div>
+                    <div id="city-metadata" class="panel-body"></div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div id="pie"></div>
+            </div>
+            <div class="col-md-5">
+                <div id="gauge"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="bubble"></div>
+        </div>
+    </div>
+
+    <script>
+
+        function updateMetaData(data) {
+
+            // Reference to Panel element for sample metadata
+            var PANEL = document.getElementById("city-metadata");
+
+            // Clear any existing metadata
+            PANEL.innerHTML = '';
+
+            // Loop through all of the keys in the json response and
+            // create new metadata tags
+            for(var key in data) {
+                h6tag = document.createElement("h6");
+                h6Text = document.createTextNode(`${key}: ${data[key]}`);
+                h6tag.append(h6Text);
+
+                PANEL.appendChild(h6tag);
+            }
+        }
+
+        // function buildCharts(sampleData, otuData) {
+
+            // // Loop through sample data and find the OTU Taxonomic Name
+            // var labels = sampleData[0]['otu_ids'].map(function(item) {
+            //     return otuData[item]
+            // });
+
+            // // Build Bubble Chart
+            // var bubbleLayout = {
+            //     margin: { t: 0 },
+            //     hovermode: 'closest',
+            //     xaxis: { title: 'OTU ID' }
+            // };
+            // var bubbleData = [{
+            //     x: sampleData[0]['otu_ids'],
+            //     y: sampleData[0]['sample_values'],
+            //     text: labels,
+            //     mode: 'markers',
+            //     marker: {
+            //         size: sampleData[0]['sample_values'],
+            //         color: sampleData[0]['otu_ids'],
+            //         colorscale: "Earth",
+            //     }
+            // }];
+            // var BUBBLE = document.getElementById('bubble');
+            // Plotly.plot(BUBBLE, bubbleData, bubbleLayout);
+
+            // // Build Pie Chart
+            // var pieData = [{
+            //     values: sampleData[0]['sample_values'].slice(0, 10),
+            //     labels: sampleData[0]['otu_ids'].slice(0, 10),
+            //     hovertext: labels.slice(0, 10),
+            //     hoverinfo: 'hovertext',
+            //     type: 'pie'
+            // }];
+
+            // var pieLayout = {
+            //     margin: { t: 0, l: 0 }
+            // };
+
+            // var PIE = document.getElementById('pie');
+            // Plotly.plot(PIE, pieData, pieLayout);
+        // };
+
+        // function updateCharts(sampleData, otuData) {
+
+        //     var sampleValues = sampleData[0]['sample_values'];
+        //     var otuIDs = sampleData[0]['otu_ids'];
+
+        //     // Return the OTU Description for each otuID in the dataset
+        //     var labels = otuIDs.map(function(item) {
+        //         return otuData[item]
+        //     });
+
+        //     // Update the Bubble Chart with the new data
+        //     var BUBBLE = document.getElementById('bubble');
+        //     Plotly.restyle(BUBBLE, 'x', [otuIDs]);
+        //     Plotly.restyle(BUBBLE, 'y', [sampleValues]);
+        //     Plotly.restyle(BUBBLE, 'text', [labels]);
+        //     Plotly.restyle(BUBBLE, 'marker.size', [sampleValues]);
+        //     Plotly.restyle(BUBBLE, 'marker.color', [otuIDs]);
+
+        //     // Update the Pie Chart with the new data
+        //     // Use slice to select only the top 10 OTUs for the pie chart
+        //     var PIE = document.getElementById('pie');
+        //     var pieUpdate = {
+        //         values: [sampleValues.slice(0, 10)],
+        //         labels: [otuIDs.slice(0, 10)],
+        //         hovertext: [labels.slice(0, 10)],
+        //         hoverinfo: 'hovertext',
+        //         type: 'pie'
+        //     };
+        //     Plotly.restyle(PIE, pieUpdate);
+        // }
+
+
+        function getData(sample, callback) {
+            // Use a request to grab the json data needed for all charts
+            Plotly.d3.json(`/samples/${sample}`, function(error, sampleData) {
+                if (error) return console.warn(error);
+
+                Plotly.d3.json('/otu', function(error, otuData) {
+                    if (error) return console.warn(error);
+                    callback(sampleData, otuData);
+                });
+            });
+
+            Plotly.d3.json(`/metadata/${sample}`, function(error, metaData) {
+                if (error) return console.warn(error);
+
+                updateMetaData(metaData);
+            })
+
+            // BONUS - Build the Gauge Chart
+            buildGauge(sample);
+        }
+
+        function getOptions() {
+
+            // Grab a reference to the dropdown select element
+            var cityselect = document.getElementById('selCity');
+            var selector = document.getElementById('selDataset');
+            console.log("cityselect: " + cityselect);
+            // Populate the list of cities in the drop down
+            Plotly.d3.json('/cities', function(error, listCities) {
+                for (var i = 0; i < listCities.length;  i++) {
+                    var currentOption = document.createElement('option');
+                    currentOption.text = listCities[i];
+                    currentOption.value = listCities[i]
+                    cityselect.appendChild(currentOption);
+                }
+            })
+            
+            // Use the list of sample names to populate the select options
+            Plotly.d3.json(`/schools/${cityselect.value}`, function(error, listSchools) {
+                for (var i = 0; i < listSchools.length;  i++) {
+                    var currentOption = document.createElement('option');
+                    currentOption.text = listSchools[i];
+                    currentOption.value = listSchools[i]
+                    selector.appendChild(currentOption);
+                }
+
+                getData(listSchools[0], buildCharts);
+            })
+        }
+
+        function cityChanged(newCity) {
+          // Fetch new data each time a new city is selected
+          chosenCity = newCity;
+          return chosenCity;
+        }
+
+
+
+        function optionChanged(newSample) {
+            // Fetch new data each time a new sample is selected
+            getData(newSample, updateCharts);
+        }
+
+        function init() {
+            getOptions();
+        }
+
+        // Initialize the dashboard
+        init();
+
+
+        /**
+        * BONUS Solution
+        **/
+        function buildGauge(sample) {
+
+            Plotly.d3.json(`/rating/${sample}`, function(error, rating) {
+                if (error) return console.warn(error);
+                // Enter the washing frequency between 0 and 180
+                var level = rating*20;
+
+                // Trig to calc meter point
+                var degrees = 180 - level,
+                    radius = .5;
+                var radians = degrees * Math.PI / 180;
+                var x = radius * Math.cos(radians);
+                var y = radius * Math.sin(radians);
+
+                // Path: may have to change to create a better triangle
+                var mainPath = 'M -.0 -0.05 L .0 0.05 L ',
+                    pathX = String(x),
+                    space = ' ',
+                    pathY = String(y),
+                    pathEnd = ' Z';
+                var path = mainPath.concat(pathX,space,pathY,pathEnd);
+
+                var data = [{ type: 'scatter',
+                x: [0], y:[0],
+                    marker: {size: 12, color:'850000'},
+                    showlegend: false,
+                    name: 'Freq',
+                    text: level,
+                    hoverinfo: 'text+name'},
+                { values: [50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50],
+                rotation: 90,
+                text: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1', ''],
+                textinfo: 'text',
+                textposition:'inside',
+                marker: {
+                    colors:[
+                        'rgba(0, 105, 11, .5)', 'rgba(10, 120, 22, .5)',
+                        'rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
+                        'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
+                        'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
+                        'rgba(240, 230, 215, .5)', 'rgba(255, 255, 255, 0)']},
+                labels: ['8-9', '7-8', '6-7', '5-6', '4-5', '3-4', '2-3', '1-2', '0-1', ''],
+                hoverinfo: 'label',
+                hole: .5,
+                type: 'pie',
+                showlegend: false
+                }];
+
+                var layout = {
+                shapes:[{
+                    type: 'path',
+                    path: path,
+                    fillcolor: '850000',
+                    line: {
+                        color: '850000'
+                    }
+                    }],
+                title: '<b>School Rating</b> <br> As rated by Parents',
+                height: 500,
+                width: 500,
+                xaxis: {zeroline:false, showticklabels:false,
+                            showgrid: false, range: [-1, 1]},
+                yaxis: {zeroline:false, showticklabels:false,
+                            showgrid: false, range: [-1, 1]}
+                };
+
+                var GAUGE = document.getElementById('gauge');
+                Plotly.newPlot(GAUGE, data, layout);
+            });
+        }
+    </script>
+
+    <!-- Import stuff that Bootstrap needs-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+</body>
+</html>

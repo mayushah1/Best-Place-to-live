@@ -9,7 +9,7 @@
 
     <!-- Import Bootstrap -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css' integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4' crossorigin='anonymous'>
-    <link rel='stylesheet' href='../css/style.css'>
+    <link rel='stylesheet' href='/static/css/style.css'>
 
     <!-- Import Plotly -->
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
@@ -31,11 +31,12 @@
                     </button>
                         <div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
                             <div class='navbar-nav'>
-                                <a class='nav-item nav-link' href='index.html'>Home<span class='sr-only'>(current)</span></a>
-                                <a class="nav-item nav-link" href="about.html">About Us</a>
-                                <a class='nav-item nav-link active' href='tbd.html'>Useful Facts</a>
-                                <a class='nav-item nav-link' href='map.html'>Mapping California</a>
-                                <a class='nav-item nav-link' href='table.html'>Playing with Tables</a>
+                                <a class='nav-item nav-link' href='/'>Home<span class='sr-only'>(current)</span></a>
+                                <a class="nav-item nav-link" href="/about">About Us</a>
+                                <a class='nav-item nav-link active' href='/tbd'>Useful Facts</a>
+                                <a class='nav-item nav-link' href='/map'>Mapping California</a>
+                                <a class="nav-item nav-link active" href="/dashboard">City Dashboard</a>
+                                <a class='nav-item nav-link' href='/table'>Playing with Tables</a>
                             </div>
                         </div>
                     </nav>
@@ -95,13 +96,13 @@
     <!--End of Body - Run all scripts here-->
 
     <!--Run scripts that hold our data-->
-    <script src='../js/perPrivPub.js'></script>
-    <script src='../js/schoolDistrictByEducationLevelAndMedianIncome.js'></script>
-    <script src='../js/womenIncome.js'></script>
-    <script src='../js/menIncome.js'></script>
+    <script src='/static/js/perPrivPub.js'></script>
+    <script src='/static/js/schoolDistrictByEducationLevelAndMedianIncome.js'></script>
+    <script src='/static/js/womenIncome.js'></script>
+    <script src='/static/js/menIncome.js'></script>
 
     <!-- Run Plotly plot script and set up data selector-->
-    <script src='../js/plots.js'></script>
+    <script src='/static/js/plots.js'></script>
 
     <!-- Import stuff that Bootstrap needs-->
     <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous'></script>
