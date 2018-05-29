@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
+from jinja2 import TemplateNotFound
 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
@@ -24,17 +25,41 @@ Base.prepare(engine, reflect=True)
 
 # Save references to each table
 School_Data = Base.classes.school_data
-# OTU = Base.classes.otu
-# Samples = Base.classes.samples
 
 # Create our session (link) from Python to the DB
 session = Session(engine)
 
 
 @app.route("/")
-def index():
+def render_index():
     """Return the homepage."""
     return render_template('index.html')
+
+@app.route('/about')
+def render_about():
+    """Renders the About Us page."""
+    return render_template('about.html')
+
+@app.route('/tbd')
+def render_tbd():
+    """Renders the tbd page."""
+    return render_template('tbd.html')
+
+@app.route('/map')
+def render_map():
+    """Renders the Map page."""
+    return render_template('map.html')
+
+@app.route('/table')
+def render_table():
+    """Renders the Table page."""
+    return render_template('table.html')
+
+@app.route('/dashboard')
+def render_dashboard():
+    """Renders the Dashboard page."""
+    return render_template('dashboard.html')
+
 
 
 @app.route('/cities')
@@ -124,56 +149,3 @@ def samples(sample):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from flask import (
-#     Flask, render_template, jsonify, redirect
-#     )
-# from flask_pymongo import PyMongo
-# # from flask_sqlalchemy import SQLAlchemy
-# # if using SQLAlchemy see 512 Visualizations Part 3, activity 3
-
-# # import scrape_mars
-
-# app = Flask(__name__)
-
-# mongo = PyMongo(app)
-
-
-# @app.route("/")
-# def index():
-#     mars_data = mongo.db.mars_data.find_one()
-#     return render_template("index.html", mars_data=mars_data)
-
-
-# @app.route("/scrape")
-# def scrape():
-#     mars_data = mongo.db.mars_data
-#     scrape_data = scrape_mars.scrape()
-#     mars_data.update(
-#         {},
-#         scrape_data,
-#         upsert=True
-#     )
-#     return redirect("http://localhost:5000/", code=302)
-
-
-# if __name__ == "__main__":
-#     app.run(debug=True)
