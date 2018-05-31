@@ -8,7 +8,7 @@
 
     <!-- Import Plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+    
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css">    
@@ -50,7 +50,7 @@
             <div class='row'>
                 <div class='col-8'>
                     <h3 class='display-3'>California City Facts</h3>
-                    <p>When you're moving, it's important to know what you're getting in to. But before you actually live in a neighborhood, it can be hard to get a feeling for the kind of community you're choosing. So we've put together some data for you to play around with to learn more about where you're going to move!</p>
+                    <p>Once you've chosen the part of California you want to be in, pick a city in that area to see how it stacks up!</p>
                 </div>
             </div>
         </div>
@@ -58,11 +58,7 @@
             <div class="col-md-2">
                 <div class="well">
                     <h5>SELECT City:</h5>
-                    <select id="selCity" onchange="cityChanged(this.value)"></select>
-                </div>
-                <div class="well">
-                  <h5>SELECT School:</h5>
-                  <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                    <select id="selCity" onchange="optionChanged(this.value)"></select>
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -182,32 +178,23 @@
         // }
 
 
-        function getData(sample, callback) {
+        function getData(city, callback) {
             // Use a request to grab the json data needed for all charts
-            Plotly.d3.json(`/samples/${sample}`, function(error, sampleData) {
-                if (error) return console.warn(error);
-
-                Plotly.d3.json('/otu', function(error, otuData) {
-                    if (error) return console.warn(error);
-                    callback(sampleData, otuData);
-                });
-            });
-
-            Plotly.d3.json(`/metadata/${sample}`, function(error, metaData) {
+            Plotly.d3.json(`/metadata/${city}`, function(error, metaData) {
                 if (error) return console.warn(error);
 
                 updateMetaData(metaData);
             })
 
             // BONUS - Build the Gauge Chart
-            buildGauge(sample);
+            buildGauge(city);
         }
 
         function getOptions() {
 
             // Grab a reference to the dropdown select element
             var cityselect = document.getElementById('selCity');
-            var selector = document.getElementById('selDataset');
+            // var selector = document.getElementById('selDataset');
             console.log("cityselect: " + cityselect);
             // Populate the list of cities in the drop down
             Plotly.d3.json('/cities', function(error, listCities) {
@@ -217,32 +204,16 @@
                     currentOption.value = listCities[i]
                     cityselect.appendChild(currentOption);
                 }
-            })
             
-            // Use the list of sample names to populate the select options
-            Plotly.d3.json(`/schools/${cityselect.value}`, function(error, listSchools) {
-                for (var i = 0; i < listSchools.length;  i++) {
-                    var currentOption = document.createElement('option');
-                    currentOption.text = listSchools[i];
-                    currentOption.value = listSchools[i]
-                    selector.appendChild(currentOption);
-                }
 
-                getData(listSchools[0], buildCharts);
+
+                getData(listCities[0], buildGauge);
             })
         }
 
-        function cityChanged(newCity) {
-          // Fetch new data each time a new city is selected
-          chosenCity = newCity;
-          return chosenCity;
-        }
-
-
-
-        function optionChanged(newSample) {
+        function optionChanged(newCity) {
             // Fetch new data each time a new sample is selected
-            getData(newSample, updateCharts);
+            getData(newCity, buildGauge);
         }
 
         function init() {
@@ -256,9 +227,9 @@
         /**
         * BONUS Solution
         **/
-        function buildGauge(sample) {
+        function buildGauge(city) {
 
-            Plotly.d3.json(`/rating/${sample}`, function(error, rating) {
+            Plotly.d3.json(`/rating/${city}`, function(error, rating) {
                 if (error) return console.warn(error);
                 // Enter the washing frequency between 0 and 180
                 var level = rating*20;
