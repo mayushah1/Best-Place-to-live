@@ -42,3 +42,10 @@ body {
 }
 
 
+.jumbotron,
+#map {
+    width: auto;
+    height: auto;
+    min-height: 600px;
+}
+
