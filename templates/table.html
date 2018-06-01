@@ -48,38 +48,97 @@
 
 
     <!-- Body Section -->
-    <div id="school-table"></div>
+    <div class='container-fluid'>
+        <div class="row">
+            <div class="col">
+                <h3 class='display-3'>Playing with School Data Tables</h3>
+                <p>Using data from <a href="https://www.greatschools.org/">GreatSchools</a>, we built this easily navigable table for you to search in your next California city to find the optimal school for your kids.</p>
+                <p>GreatSchools is the leading national nonprofit empowering parents to select the best possible educational opportunities for their children. GreatSchools features more than one million parent ratings and reviews nationwide for more than 200,000 PreK-12 schools. With a rating of 3/4 from <a href="https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=8729">Charity Navigator</a>, we think this is a great resource for you when deciding where to move!</p>
+                <p>So go ahead and play around with the filters below, and have fun finding your best new school!</p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <div id="school-table"></div>
+                Source: <a href='https://www.greatschools.org/'>GreatSchools.org</a> (Data Pulled 05/2018)
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.1/js/tabulator.min.js"></script>
     <script src="static/js/convertcsv_revised.js"></script>
     <script type="text/javascript">
+        $("#school-table").tabulator({
+            index: "FIELD2",
+            height: "800px",
+            pagination: "local",
+            layout: "fitColumns",
+            // responsiveLayout:"collapse",
+            columns: [
+                // {title:"ID", field:"FIELD2", headerFilter:"input", width:100},
+                {
+                    title: "CITY",
+                    field: "FIELD3",
+                    headerFilter: "input",
+                    width: 150
+                },
+                {
+                    title: "ENROLLMENT",
+                    field: "FIELD4",
+                    headerFilter: "input",
+                    width: 150
+                },
+                {
+                    title: "GRADERANGE",
+                    field: "FIELD5",
+                    headerFilter: "input",
+                    width: 150
+                },
+                // {title:"GS RATING",field:"FIELD6", headerFilter:"input",width:120},
+                // {title:"LATITUDE", field:"FIELD7", headerFilter:"input",width:150},
+                // {title:"LONGITUDE", field:"FIELD8", headerFilter:"input",width:150},
+                {
+                    title: "PARENT RATING",
+                    field: "FIELD9",
+                    formatter: "star",
+                    headerFilter: "input",
+                    width: 150
+                },
+                {
+                    title: "PHONE #",
+                    field: "FIELD10",
+                    headerFilter: "input",
+                    width: 150
+                },
+                {
+                    title: "SCHOOL NAME",
+                    field: "FIELD11",
+                    headerFilter: "input"
+                },
+                {
+                    title: "SCHOOL TYPE",
+                    field: "FIELD12",
+                    headerFilter: "input",
+                    width: 150
+                },
+                {
+                    title: "WEBSITE",
+                    field: "FIELD13",
+                    headerFilter: "input",
+                    width: 200
+                }
+            ],
+            data: dataSet,
+        });
+        // i = "san bruno";
+        // $("#school-table").tabulator("setFilter", "FIELD3", "like", i);
+        $("#school-table").tabulator("setSort", "FIELD9", "desc");
+        // $("#school-table").tabulator("setFilter", "FIELD6", "!=", "NA");
 
-    $("#school-table").tabulator({
-        index :"FIELD2",
-        height:"800px",
-        pagination:"local",
-        layout:"fitColumns",
-        // responsiveLayout:"collapse",
-        columns:[
-            // {title:"ID", field:"FIELD2", headerFilter:"input", width:100},
-            {title:"CITY",field:"FIELD3", headerFilter:"input",width:150},
-            {title:"ENROLLMENT", field:"FIELD4", headerFilter:"input",width:150},
-            {title:"GRADERANGE",field:"FIELD5", headerFilter:"input",width:150},
-            // {title:"GS RATING",field:"FIELD6", headerFilter:"input",width:120},
-            // {title:"LATITUDE", field:"FIELD7", headerFilter:"input",width:150},
-            // {title:"LONGITUDE", field:"FIELD8", headerFilter:"input",width:150},
-            {title:"PARENT RATING", field:"FIELD9",formatter:"star", headerFilter:"input",width:150},
-            {title:"PHONE #", field:"FIELD10", headerFilter:"input",width:150},
-            {title:"SCHOOL NAME", field:"FIELD11", headerFilter:"input"},
-            {title:"SCHOOL TYPE", field:"FIELD12", headerFilter:"input",width:150},
-            {title:"WEBSITE", field:"FIELD13", headerFilter:"input",width:200}
-        ],data:dataSet,
-    });
-    // i = "san bruno";
-    // $("#school-table").tabulator("setFilter", "FIELD3", "like", i);
-    $("#school-table").tabulator("setSort", "FIELD9", "desc");
-    // $("#school-table").tabulator("setFilter", "FIELD6", "!=", "NA");
     </script>
 
 
