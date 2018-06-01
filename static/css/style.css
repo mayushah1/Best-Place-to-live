@@ -38,4 +38,14 @@ h1 {
 
 body {
     padding-top: 115px;
+    height: 100%;
 }
+
+
+.jumbotron,
+#map {
+    width: auto;
+    height: auto;
+    min-height: 600px;
+}
+
