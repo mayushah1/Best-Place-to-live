@@ -40,14 +40,5 @@ body {
     padding-top: 115px;
     height: 100%;
 }
-/* remove default margin and padding from body */
 
-  
-  /* set map, body, and html to 100% of the screen size */
-  .jumbotron,
-  #map,
-  body,
-  html {
-    height: 100%;
-  }
 
