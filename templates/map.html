@@ -7,9 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mapping California</title>
 
+    <!-- Import Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}"> -->
+    <!-- Import D3 -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+
 </head>
 
 <body>
@@ -27,11 +35,12 @@
                     </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-                                <a class="nav-item nav-link" href="index.html">Home</a>
-                                <a class="nav-item nav-link" href="about.html">About Us</a>
-                                <a class="nav-item nav-link" href="tbd.html">Useful Facts</a>
-                                <a class="nav-item nav-link active" href="map.html">Mapping California<span class="sr-only">(current)</span></a>
-                                <a class="nav-item nav-link" href="table.html">Playing with Tables</a>
+                                <a class="nav-item nav-link" href="/">Home</a>
+                                <a class="nav-item nav-link" href="/about">About Us</a>
+                                <a class="nav-item nav-link" href="/tbd">Useful Facts</a>
+                                <a class="nav-item nav-link active" href="/map">Mapping California<span class="sr-only">(current)</span></a>
+                                <a class="nav-item nav-link" href="/dashboard">City Dashboard</a>
+                                <a class="nav-item nav-link" href="/table">Playing with Tables</a>
                             </div>
                         </div>
                     </nav>
@@ -40,14 +49,14 @@
         </div>
     </div>
 
+    <!-- Map -->
+    <div class="jumbotron" id="map"></div>
+    <!-- Leaflet JavaScript -->
 
-
-
-
-    <!-- Body Section -->
-
-
-
+        <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+        <!-- Our JavaScript -->
+        <script type="text/javascript" src="{{url_for('static', filename='js/logic.js')}}"></script>
+    
 
 
     <!-- Import stuff that Bootstrap needs-->

@@ -9,7 +9,8 @@
 
     <!-- Import Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.1/css/tabulator.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -27,11 +28,12 @@
                     </button>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
-                                <a class="nav-item nav-link" href="index.html">Home</a>
-                                <a class="nav-item nav-link" href="about.html">About Us</a>
-                                <a class="nav-item nav-link" href="tbd.html">Useful Facts</a>
-                                <a class="nav-item nav-link" href="map.html">Mapping California</a>
-                                <a class="nav-item nav-link active" href="table.html">Playing with Tables<span class="sr-only">(current)</span></a>
+                                <a class="nav-item nav-link" href="/">Home</a>
+                                <a class="nav-item nav-link" href="/about">About Us</a>
+                                <a class="nav-item nav-link" href="/tbd">Useful Facts</a>
+                                <a class="nav-item nav-link" href="/map">Mapping California</a>
+                                <a class="nav-item nav-link" href="/dashboard">City Dashboard</a>
+                                <a class="nav-item nav-link active" href="/table">Playing with Tables<span class="sr-only">(current)</span></a>
                             </div>
                         </div>
                     </nav>
@@ -46,7 +48,39 @@
 
 
     <!-- Body Section -->
+    <div id="school-table"></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.5.1/js/tabulator.min.js"></script>
+    <script src="static/js/convertcsv_revised.js"></script>
+    <script type="text/javascript">
 
+    $("#school-table").tabulator({
+        index :"FIELD2",
+        height:"800px",
+        pagination:"local",
+        layout:"fitColumns",
+        // responsiveLayout:"collapse",
+        columns:[
+            // {title:"ID", field:"FIELD2", headerFilter:"input", width:100},
+            {title:"CITY",field:"FIELD3", headerFilter:"input",width:150},
+            {title:"ENROLLMENT", field:"FIELD4", headerFilter:"input",width:150},
+            {title:"GRADERANGE",field:"FIELD5", headerFilter:"input",width:150},
+            // {title:"GS RATING",field:"FIELD6", headerFilter:"input",width:120},
+            // {title:"LATITUDE", field:"FIELD7", headerFilter:"input",width:150},
+            // {title:"LONGITUDE", field:"FIELD8", headerFilter:"input",width:150},
+            {title:"PARENT RATING", field:"FIELD9",formatter:"star", headerFilter:"input",width:150},
+            {title:"PHONE #", field:"FIELD10", headerFilter:"input",width:150},
+            {title:"SCHOOL NAME", field:"FIELD11", headerFilter:"input"},
+            {title:"SCHOOL TYPE", field:"FIELD12", headerFilter:"input",width:150},
+            {title:"WEBSITE", field:"FIELD13", headerFilter:"input",width:200}
+        ],data:dataSet,
+    });
+    // i = "san bruno";
+    // $("#school-table").tabulator("setFilter", "FIELD3", "like", i);
+    $("#school-table").tabulator("setSort", "FIELD9", "desc");
+    // $("#school-table").tabulator("setFilter", "FIELD6", "!=", "NA");
+    </script>
 
 
 
