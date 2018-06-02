@@ -50,14 +50,23 @@
     </div>
 
     <!-- Map -->
-    <div class="jumbotron" id="map"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h3 class='display-3'>Mapping California Housing & School Data</h3>
+                <p>[INSERT CONTENT HERE]</p>
+                <p>[INSERT CONTENT HERE]</p>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron jumbotron-fluid" id="map"></div>
+
+
     <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 
-        <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-        <!-- Our JavaScript -->
-        <script type="text/javascript" src="{{url_for('static', filename='js/logic.js')}}"></script>
-    
-
+    <!-- Our JavaScript -->
+    <script type="text/javascript" src="{{url_for('static', filename='js/logic.js')}}"></script>
 
     <!-- Import stuff that Bootstrap needs-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

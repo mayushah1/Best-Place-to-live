@@ -1,6 +1,3 @@
-    /*--------------------------------------------------------------------------
-                                                                                                                                                        Public vs private school
-                                                                                                                                                        */
     var xBar = [];
     perPrivPub.forEach(function (data) {
         xBar.push(data.schoolDistrict);
@@ -65,7 +62,8 @@
             y: 1.2,
         },
         xaxis: {
-            tickangle: -30
+            tickangle: -30,
+            title: 'School District'
         },
         barmode: 'stack'
     };
@@ -378,7 +376,12 @@
     var layout3 = {
         title: 'Median Income by Education Level & School District',
         xaxis: {
-            tickangle: -30
+            tickangle: -30,
+            title: 'School District'
+        },
+        yaxis: {
+            range: [0, 450000],
+            title: 'Income (USD)'
         },
         showlegend: true,
         legend: {
